@@ -7,40 +7,35 @@ const subject = () => {
 
   const subject = router.query.subject;
 
-  if (subject === 'members') {
-    return (
-      <Fragment>
-        <div>Members</div>
-        <ul>
-          <li>
-            <Link href="/kanboard/members/tote">
-              <a>Tote</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/kanboard/members/koce">
-              <a>Koce</a>
-            </Link>
-          </li>
-        </ul>
-      </Fragment>
-    );
-  } else if (subject === 'projects') {
-    return (
-      <Fragment>
-        <div>Projects</div>
-        <ul>
-          <li>
-            <Link href="/kanboard/projects/nodejs">Nodejs</Link>
-          </li>
-          <li>
-            <Link href="/kanboard/projects/react">React</Link>
-          </li>
-        </ul>
-      </Fragment>
-    );
-  }
-  return <div>loading</div>;
+  let output = subject ? (
+    <Fragment>
+      <div>{subject.toUpperCase()}</div>
+      <ul>
+        <li>
+          <Link
+            href={{
+              pathname: `/kanboard/${subject}/[id]`,
+              query: { id: '1' },
+            }}
+          >
+            1
+          </Link>
+        </li>
+        <li>
+          <Link
+            href={{
+              pathname: `/kanboard/${subject}/[id]`,
+              query: { id: '2' },
+            }}
+          >
+            2
+          </Link>
+        </li>
+      </ul>
+    </Fragment>
+  ) : null;
+
+  return output;
 };
 
 export default subject;
