@@ -1,45 +1,19 @@
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../styles/globals.css';
 import Link from 'next/link';
+import Navigation from '../components/Navigation/Navigation.tsx';
 
 function MyApp({ Component, pageProps }) {
+  const [navigationItems, setNavigationItems] = React.useState([
+    { title: 'Home', href: '/' },
+    { title: 'Members', href: '/kanboard/members' },
+    { title: 'Projects', href: '/kanboard/projects' },
+  ]);
+
   return (
     <Fragment>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <Link href="/">
-            <a class="navbar-brand">Navbar</a>
-          </Link>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <Link href="/kanboard">
-                <a class="nav-link active" aria-current="page">
-                  Home
-                </a>
-              </Link>
-              <Link href="/kanboard/members">
-                <a class="nav-link">Members</a>
-              </Link>
-              <Link href="/kanboard/projects">
-                <a class="nav-link">Projects</a>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-
+      <Navigation navTitle="Kanboard" navItems={navigationItems} />
       <Component {...pageProps} />
     </Fragment>
   );
